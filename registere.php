@@ -39,7 +39,7 @@
           #411422,
           #000000 60%
         );
-        background-repeat: no-repeat;
+        background-repeat:no-repeat;
         background-size: cover;
         background-attachment: fixed;
       }
@@ -48,7 +48,10 @@
         font-size: 24px;
         font-weight: bold;
         color: #fff;
+        z-index: 1000000;
         text-decoration: none;
+        position: absolute;
+        top: 32px;
         height: 5rem;
         filter: drop-shadow(0 0 3px #fd5d8d);
       }
@@ -122,26 +125,18 @@
         filter: drop-shadow(0 0 20px var(--maincolor));
       }
 
-      form h1 {
-        font-size: 3rem;
+      h1 {
         position: absolute;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        color: white;
-        top: 9%;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 4rem;
+        color: #ffffff;
+        z-index: 10;
+        justify-content: center;
         text-align: center;
-        left: 27%;
-      }
-
-      form {
-        background: #cfcfcf00;
-        padding-top: 190px;
-        padding-bottom: 100px;
-        padding-right: 50px;
-        padding-left: 50px;
-        border-radius: 3%;
-        -webkit-backdrop-filter: blur(10px);
-        backdrop-filter: blur(4px);
-        border: 1.5px solid rgba(255, 255, 255, 0.292);
+        animation: infinite 1s alternate;
+        animation: glow 1.5s infinite alternate;
       }
 
       input {
@@ -215,51 +210,7 @@
         <img src="properties/logo.png" alt="logo" />
       </div>
     </header>
-    <div class="login-form">
-      <form action="" id="form">
-        <h1>
-          Add New <br />
-          User
-        </h1>
-        <div class="input-group">
-          <input
-            type="text"
-            id="username"
-            name="username"
-            placeholder="Username"
-          />
-        </div>
-        <div class="input-group">
-          <input type="text" id="NIK" name="NIK" placeholder="NIK" />
-        </div>
-        <div class="input-group">
-          <input
-            type="text"
-            id="Phonenumber"
-            name="Phonenumber"
-            placeholder="Phone Number"
-          />
-        </div>
-        <div class="input-group">
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Password"
-          />
-        </div>
-        <div class="input-group">
-          <input
-            type="password"
-            id="confirmpassword"
-            name="confirmpassword"
-            placeholder="Confirm Password"
-          />
-        </div>
-
-        <button class="arrow-button">
-          <i class="fas fa-arrow-right"></i>
-        </button>
+     <h1>Please meet the Internet cafe operator who is on duty today.</h1>
       </form>
     </div>
   </body>

@@ -1,3 +1,37 @@
+<?php
+session_start();
+$pdo = require 'koneksi.php';
+
+$hasil = true;
+$error = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $username = trim($_POST['username']);
+  $password = trim($_POST['password']);
+
+  $sql = 'SELECT * FROM wrntuser WHERE username = :username LIMIT 1';
+  $query = $pdo->prepare($sql);
+  $query->execute(['username' => $username]);
+  $user = $query->fetch();
+
+  if (!$user) {
+    $hasil = false;
+    $error = 'Username tidak ditemukan.';
+  } else if ($password !== $user['password']) {
+    $hasil = false;
+    $error = 'Password salah.';
+  } else {
+    $_SESSION['wrntgacur'] = [
+      'id' => $user['id'],
+      'username' => $user['username'],
+    ];
+    header('Location: dashboarduser.php');
+    exit;
+  }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,7 +47,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     />
-    <link rel="icon" href="properties/logo.png">
+    <link rel="icon" href="properties/logo2.ico" type="image/x-icon" />
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap");
       @import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
@@ -24,7 +58,7 @@
         padding: 0;
         font-family: "Russo One";
         box-sizing: border-box;
-      }
+      } 
 
       :root {
         --maincolor: #bf205e;
@@ -38,7 +72,7 @@
         background: radial-gradient(
           circle at bottom right,
           #411422,
-          #000000 74%
+          #000000 60%
         );
         min-height: 100vh;
         margin: 0;
@@ -50,6 +84,7 @@
         border-radius: 50%;
         opacity: 0.8;
         animation: float 4s ease-in-out infinite;
+        z-index: 1000;
       }
 
       .logo img {
@@ -61,7 +96,7 @@
         position: absolute;
         top: 32px;
         height: 5rem;
-        filter: drop-shadow(0 0 3px #ffffff);
+        filter: drop-shadow(0 0 3px #fd5d8d);
       }
 
       .navbar a {
@@ -78,6 +113,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         color: white;
+        z-index: 999;
         animation: slideatasdaribawah 2s ease-out forwards;
       }
 
@@ -145,10 +181,9 @@
       form h1 {
         font-size: 2.9rem;
         position: absolute;
-
+        left: 50%;
+        transform: translate(-50%, -129%);
         color: white;
-        top: 9%;
-        right: 0.5px;
         text-align: center;
         justify-content: center;
       }
@@ -305,9 +340,9 @@
       #changli {
         position: absolute;
         top: 0px;
-        right: -191px;
-        width: 60%;
-        z-index: -1;
+        right: -79px;
+        width: 50%;
+        z-index: 800;
         filter: drop-shadow(0 0 10px #6b293d);
         animation: slidekiridarikanan 2s ease-out forwards,
           floatImage1 8s ease-in-out infinite 2.1s;
@@ -379,13 +414,18 @@
       <div class="noise noise-moving"></div>
     </div>
     <header>
-      <div class="logo">
-        <img src="properties/logo1.png" alt="logo" />
+        <div class="logo">
+        <a href="index.php">
+          <img src="properties/logo.png" alt="logo" />
+        </a>
       </div>
     </header>
     <div class="login-form">
-      <form action="" id="form">
-        <h1>DASHBOARD ADMIN</h1>
+      <form action="" id="form" method="post">
+        <h1>
+          USER<br />
+          LOGIN<br />
+        </h1>
         <div class="input-group">
           <input
             type="text"
@@ -408,16 +448,19 @@
         <button class="arrow-button">
           <i class="fas fa-arrow-right"></i>
         </button>
+        <div class="register">
+          <a href="registere.php"> don't have an account yet? </a>
+        </div>
       </form>
     </div>
 
     <div class="bg">
-      <img src="properties/logo2.png" alt="background" id="bg" />
-      <img src="properties/YaeMiko.png" alt="" id="changli" />
+      <img src="properties/logo1.png" alt="background" id="bg" />
+      <img src="properties/changli.png" alt="" id="changli" />
     </div>
   </body>
   <script>
-    const numStars = 100; // jumlah bintang
+    const numStars = 150; // jumlah bintang
     for (let i = 0; i < numStars; i++) {
       const star = document.createElement("div");
       star.classList.add("star");

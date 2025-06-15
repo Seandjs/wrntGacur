@@ -1,3 +1,22 @@
+<?php
+
+$pdo = require 'koneksi.php';
+
+if (!empty($_POST)){
+  $sql = 'INSERT INTO wrntuser (username, nik, phone,  password, balance)
+  Values (:username, :nik, :phone, :password, :balance)';
+  $query = $pdo->prepare($sql);
+  $query->execute(array(
+    'username' => $_POST['username'],
+    'nik' => $_POST['nik'],
+    'phone' => $_POST['phone'],
+    'password' => $_POST['password'],
+    'balance' => $_POST['balance']
+  ));
+  header('Location: usermanage.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -39,7 +58,7 @@
           #411422,
           #000000 60%
         );
-        background-repeat:no-repeat;
+        background-repeat: no-repeat;
         background-size: cover;
         background-attachment: fixed;
       }
@@ -48,10 +67,7 @@
         font-size: 24px;
         font-weight: bold;
         color: #fff;
-        z-index: 1000000;
         text-decoration: none;
-        position: absolute;
-        top: 32px;
         height: 5rem;
         filter: drop-shadow(0 0 3px #fd5d8d);
       }
@@ -125,18 +141,26 @@
         filter: drop-shadow(0 0 20px var(--maincolor));
       }
 
-      h1 {
+      form h1 {
+        font-size: 3rem;
         position: absolute;
-        top: 40%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 4rem;
-        color: #ffffff;
-        z-index: 10;
-        justify-content: center;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: white;
+        top: 9%;
         text-align: center;
-        animation: infinite 1s alternate;
-        animation: glow 1.5s infinite alternate;
+        left: 27%;
+      }
+
+      form {
+        background: #cfcfcf00;
+        padding-top: 190px;
+        padding-bottom: 100px;
+        padding-right: 50px;
+        padding-left: 50px;
+        border-radius: 3%;
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(4px);
+        border: 1.5px solid rgba(255, 255, 255, 0.292);
       }
 
       input {
@@ -204,16 +228,45 @@
       }
     </style>
   </head>
+
   <body>
-    <header>
-      <div class="logo">
-        <img src="properties/logo.png" alt="logo" />
-      </div>
-    </header>
-     <h1>Please meet the Internet cafe operator who is on duty today.</h1>
-      </form>
+  <header>
+    <div class="logo">
+      <img src="properties/logo.png" alt="logo" />
     </div>
-  </body>
+  </header>
+
+  <div class="login-form">
+    <form action="" method="POST" id="form">
+      <h1>Add New <br /> User</h1>
+
+      <div class="input-group">
+        <input type="text" id="username" name="username" placeholder="Username" required />
+      </div>
+
+      <div class="input-group">
+        <input type="number" id="nik" name="nik" placeholder="NIK" required />
+      </div>
+
+      <div class="input-group">
+        <input type="number" id="phone" name="phone" placeholder="Phone" required />
+      </div>
+
+      <div class="input-group">
+        <input type="password" id="password" name="password" placeholder="Password" required />
+      </div>
+
+      <div class="input-group">
+        <input type="number" id="balance" name="balance" placeholder="Balance" required />
+      </div>
+
+      <button type="submit" class="arrow-button">
+        <i class="fas fa-arrow-right"></i> Submit
+      </button>
+    </form>
+  </div>
+</body>
+
   <script>
     const numStars = 150; // jumlah bintang
     for (let i = 0; i < numStars; i++) {

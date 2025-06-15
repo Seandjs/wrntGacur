@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['wrntgacur'])) {
+  header('Location: loginuser.php');
+  exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -202,24 +210,31 @@
     </div>
     <header>
       <div class="logo">
-        <a href="index.html">
+        <a href="index.php">
           <img src="properties/logo.png" alt="logo" />
         </a>
       </div>
     </header>
     <div class="logout">
-      <a href="dashboardatmin.html">
+      <a href="loginuser.php">
         <button class="logout-button">
           <i class="fa-solid fa-arrow-right-from-bracket"></i>
         </button>
       </a>
     </div>
+      <?php
+  $pdo = require 'koneksi.php';
+  $sql2 = 'SELECT id, username, phone, nik, balance FROM wrntuser';
+  $query2 = $pdo->prepare($sql2);
+  $query2->execute();
+  while ($wrntuser = $query2->fetch()) { ?>
     <div class="profile">
-      <h2>Welcome <span class="wow">[username] [User ID]</span></h2>
-      <h3>NIK : <span class="right">[NIK user]</span></h3>
-      <h3>Used Balance : <span class="right">[Balance user]</span></h3>
+      <h2>Welcome <span class="wow"><?php echo htmlentities($wrntuser['username']); ?> <?php echo htmlentities($wrntuser['id']); ?></span></h2>
+      <h3>NIK : <span class="right"><?php echo htmlentities($wrntuser['nik']); ?></span></h3>
+      <h3>Used Balance : <span class="right"><?php echo htmlentities($wrntuser['balance']); ?></span></h3>
       <h3>Balance : <span class="right">[Used Balance user]</span></h3>
     </div>
+<?php } ?>
   </body>
   <script>
     const numStars = 150; // jumlah bintang

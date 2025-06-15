@@ -434,10 +434,10 @@
     </div>
 
     <nav>
-      <a href="loginatmin.html"><i class="fa-solid fa-user-tie"></i> Admin</a>
+      <a href="loginatmin.php"><i class="fa-solid fa-user-tie"></i> Admin</a>
     </nav>
 
-    <a href="loginuser.html">
+    <a href="loginuser.php">
       <button class="arrow-button">
         <p>LOGIN</p>
       </button>
