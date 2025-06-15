@@ -224,7 +224,7 @@ if (!isset($_SESSION['wrntgacur'])) {
     </div>
       <?php
   $pdo = require 'koneksi.php';
-  $sql2 = 'SELECT id, username, phone, nik, balance FROM wrntuser';
+  $sql2 = 'SELECT id, username, phone, nik, balance, usedbalance FROM wrntuser';
   $query2 = $pdo->prepare($sql2);
   $query2->execute();
   while ($wrntuser = $query2->fetch()) { ?>
@@ -232,7 +232,7 @@ if (!isset($_SESSION['wrntgacur'])) {
       <h2>Welcome <span class="wow"><?php echo htmlentities($wrntuser['username']); ?>#<?php echo htmlentities($wrntuser['id']); ?></span></h2>
       <h3>NIK : <span class="right"><?php echo htmlentities($wrntuser['nik']); ?></span></h3>
       <h3>Balance : <span class="right"><?php echo htmlentities($wrntuser['balance']); ?></span></h3>
-      <h3>Used Balance : <span class="right">[Used Balance]</span></h3>
+      <h3>Used Balance : <span class="right"><?php echo htmlentities($wrntuser['usedbalance']); ?></span></h3>
     </div>
 <?php } ?>
   </body>

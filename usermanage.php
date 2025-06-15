@@ -121,6 +121,7 @@ if (!isset($_SESSION['wrntgacur'])) {
       color: #fff;
       box-sizing: border-box;
       outline: none;
+      color: #fff;
       transition: all 0.3s;
     }
 
@@ -296,7 +297,7 @@ if (!isset($_SESSION['wrntgacur'])) {
     }
 
     .add-balance input[type="number"]::-webkit-input-placeholder {
-      color: #919191;
+      color:rgb(70, 70, 70);
     }
 
     input[type="number"] {
@@ -308,6 +309,7 @@ if (!isset($_SESSION['wrntgacur'])) {
       margin-bottom: 1rem;
       font-size: 1rem;
       background-color: #212222b0;
+      color: white;
     }
 
     input[type="number"]:focus {
@@ -315,6 +317,7 @@ if (!isset($_SESSION['wrntgacur'])) {
       background-color: #212222b0;
       border-color: #4a4a4a;
       box-shadow: 0 0 5px rgba(109, 109, 109, 0.5);
+      color: white;
     }
 
     .add-user-button {
@@ -392,7 +395,7 @@ if (!isset($_SESSION['wrntgacur'])) {
       cursor: pointer;
       background-color: var(--maincolor);
       border: none;
-      border-radius: 50px;
+      border-radius: 90px;
       padding: 16px;
       float: right;
       transition: ease-in-out 0.3s;

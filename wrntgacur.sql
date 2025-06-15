@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2025 at 11:28 AM
+-- Generation Time: Jun 15, 2025 at 02:20 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -52,17 +52,18 @@ CREATE TABLE `wrntuser` (
   `nik` int(16) NOT NULL,
   `phone` int(16) NOT NULL,
   `password` varchar(16) NOT NULL,
-  `balance` decimal(20,0) NOT NULL
+  `balance` decimal(20,0) NOT NULL,
+  `usedbalance` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `wrntuser`
 --
 
-INSERT INTO `wrntuser` (`id`, `username`, `nik`, `phone`, `password`, `balance`) VALUES
-(1, 'dano', 23456789, 4567890, 'kontolodon', 20060),
-(5, 'fanosigma', 213123, 123123123, '123123', 20000),
-(6, 'rafif', 1231231, 4567890, 'akuganteng', 1000);
+INSERT INTO `wrntuser` (`id`, `username`, `nik`, `phone`, `password`, `balance`, `usedbalance`) VALUES
+(1, 'dano', 23456789, 4567890, 'akucintagendis', 20, 0),
+(5, 'fanosigma', 213123, 123123123, 'akurindugendis', 20, 0),
+(6, 'rafif', 1231231, 4567890, 'akucintakanaya', 20, 0);
 
 --
 -- Indexes for dumped tables
